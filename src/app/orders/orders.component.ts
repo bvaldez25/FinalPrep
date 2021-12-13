@@ -3,7 +3,15 @@ import { Router } from '@angular/router';
 import { FlexModalService } from '../shared-components/flex-modal/flex-modal.service';
 import { Http } from '@angular/http';
 import { e } from '@angular/core/src/render3';
+import { clear } from 'console';
 
+interface IOrder {
+  pid: string;
+  image: string;
+  description: string;
+  quantity: number;
+  price: number;
+}
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -12,7 +20,7 @@ import { e } from '@angular/core/src/render3';
 
 export class OrdersComponent implements OnInit {
 
-  orders:Array<any> = [];
+  orders:Array<IOrder> = [];
   name = '';
   errorMessage = '';
   confirmMessage = '';
@@ -131,7 +139,15 @@ export class OrdersComponent implements OnInit {
     }
   }
 
+  clear() {
+    this.orders.forEach((item, i) => {
+      console.log('item: ', item, 'i: ', i);
+      item.price = '';
+      item.quantity = '';
+    });
+  }
 }
+
 function firstName(arg0: string, name: string, arg2: string, commaIndex: number, arg4: string, firstName: any, arg6: string, lastName: any) {
   throw new Error('Function not implemented.');
 }
